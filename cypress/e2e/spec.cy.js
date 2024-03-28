@@ -54,9 +54,9 @@ describe('Test for Sign UP', () => {
   it('Sign up with correct user data', () => {
     cy.visit(testwebsite)
     cy.get('#signin2').click()
+
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#sign-username').should('be.visible').clear().type(randomName);
-
     cy.get('#sign-password').clear().type(randomPassword);
 
     cy.get('button[type="button"]').should('be.visible').contains('Sign up').click();
@@ -73,9 +73,9 @@ describe('Tests for Log In and Log Out', () => {
   it('Sign up with wrong PASS', () => {
     cy.visit(testwebsite)
     cy.get('#login2').click()
+
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#loginusername').should('be.visible').clear().type(randomName);
-
     cy.get('#loginpassword').clear().type(122334);
 
     cy.get('button[type="button"').should('be.visible').contains('Log in').click();
@@ -84,17 +84,14 @@ describe('Tests for Log In and Log Out', () => {
     cy.on('window:alert', (alertText) => {
       expect(alertText).to.equal('Wrong password.');
     });
-    //cy.get('.alert-message').should('be.visible');
-    //cy.contains('Wrong password.').should('be.visible');
-    //є питання до сповіщення користувача про хибний пароль
   })
 
   it('log in with correct user data', () => {
     cy.visit(testwebsite)
     cy.get('#login2').click()
+
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#loginusername').should('be.visible').clear().type(randomName);
-
     cy.get('#loginpassword').clear().type(randomPassword);
 
     cy.get('button[type="button"]').should('be.visible').contains('Log in').click();
@@ -106,13 +103,17 @@ describe('Tests for Log In and Log Out', () => {
   it('Log OUT', () => {
     cy.visit(testwebsite)
     cy.get('#login2').click()
+
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#loginusername').should('be.visible').clear().type(randomName);
     cy.get('#loginpassword').clear().type(randomPassword);
     cy.get('button[type="button"]').should('be.visible').contains('Log in').click();
+
     cy.wait(2000);
     cy.contains('Welcome ' + randomName).should('be.visible');
+
     cy.get('#logout2').click()
+    
     cy.wait(2000);
     cy.get('#login2').should('be.visible');
   })
