@@ -1,4 +1,4 @@
-var testwebsite = "https://www.demoblaze.com/"
+const testwebsite = "https://www.demoblaze.com/"
 const testproductaddtocart = "https://www.demoblaze.com/prod.html?idp_=1"
 //хардкодимо)))
 var USER = "OnlyMyTestUser"
@@ -46,7 +46,9 @@ describe('Accessibility Tests', () => {
 
   it('Should pass accessibility tests', () => {
     cy.visit(testwebsite)
-    //як варіант переривання тестування якщо сторінка недоступна
+    
+    cy.title().should('eq', 'STORE');
+    //тест доступності необхідних та обов'язкових елементів
   })
 })
 
@@ -66,9 +68,9 @@ describe('Test for Sign UP', () => {
     .type(randomPassword);
 
     cy.get('button[type="button"]')
-    .should('be.visible')
-    .contains('Sign up')
-    .click();
+      .should('be.visible')
+      .contains('Sign up')
+      .click();
 
     cy.wait(waittimeout);
     cy.on('window:alert', (alertText) => {
@@ -88,7 +90,9 @@ describe('Tests for Log In and Log Out', () => {
     .should('be.visible')
     .clear()
     .type(randomName);
-    cy.get('#loginpassword').clear().type(122334);
+    cy.get('#loginpassword')
+    .clear()
+    .type(122334);
 
     cy.get('button[type="button"')
     .should('be.visible')
