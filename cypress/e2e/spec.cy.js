@@ -1,11 +1,11 @@
-const testwebsite = "https://www.demoblaze.com/"
-const testproductaddtocart = "https://www.demoblaze.com/prod.html?idp_=1"
+const testwebsite = "https://www.demoblaze.com/";
+const testproductaddtocart = "https://www.demoblaze.com/prod.html?idp_=1";
 //хардкодимо)))
-var USER = "OnlyMyTestUser"
-var PASSWORD = "2@2@8vKSTrPkyCd"
+var USER = "OnlyMyTestUser";
+var PASSWORD = "2@2@8vKSTrPkyCd";
 
-const creditcardNumber = 1111222233334444
-const waittimeout = 2000
+const creditcardNumber = 1111222233334444;
+const waittimeout = 2000;
 const faker = require('faker');
 // Генеруємо випадкове ім'я
 const randomName = faker.name.findName()+'Test';
@@ -45,7 +45,7 @@ const randomCountry = countries[randomIndex];
 describe('Accessibility Tests', () => {
 
   it('Should pass accessibility tests', () => {
-    cy.visit(testwebsite)
+    cy.visit(testwebsite);
     
     cy.title().should('eq', 'STORE');
     //тест доступності необхідних та обов'язкових елементів
@@ -55,8 +55,8 @@ describe('Accessibility Tests', () => {
 describe('Test for Sign UP', () => {
 
   it('Sign up with correct user data', () => {
-    cy.visit(testwebsite)
-    cy.get('#signin2').click()
+    cy.visit(testwebsite);
+    cy.get('#signin2').click();
 
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#sign-username')
@@ -106,14 +106,15 @@ describe('Tests for Log In and Log Out', () => {
   })
 
   it('log in with correct user data', () => {
-    cy.visit(testwebsite)
-    cy.get('#login2').click()
+    cy.visit(testwebsite);
+    cy.get('#login2').click();
 
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#loginusername')
     .should('be.visible')
     .clear()
     .type(randomName);
+    cy.wait(waittimeout);
     cy.get('#loginpassword')
     .clear()
     .type(randomPassword);
@@ -128,8 +129,8 @@ describe('Tests for Log In and Log Out', () => {
   })
 
   it('Log OUT', () => {
-    cy.visit(testwebsite)
-    cy.get('#login2').click()
+    cy.visit(testwebsite);
+    cy.get('#login2').click();
 
     cy.get('.modal-dialog').should('be.visible');
     cy.get('#loginusername')
@@ -147,7 +148,7 @@ describe('Tests for Log In and Log Out', () => {
     cy.wait(waittimeout);
     cy.contains('Welcome ' + randomName).should('be.visible');
 
-    cy.get('#logout2').click()
+    cy.get('#logout2').click();
 
     cy.wait(waittimeout);
     cy.get('#login2').should('be.visible');
